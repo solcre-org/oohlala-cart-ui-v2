@@ -1,0 +1,202 @@
+
+#contacto .mapa{
+    display: block;
+    width: 100%;
+    height: 250px;
+}
+#contacto .mapa .map{
+    width: 100%;
+    height: 100%;
+}
+#contacto .mapa .map .marker {
+    display: block;
+    width: 60px;
+    height: 83px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-size: cover;
+    background-image: url(../../images/marcador.svg);
+    background-repeat: no-repeat;
+}
+
+/* Formulario */
+
+
+#contacto .formulario .col.full{
+    width: 100%;
+}
+#contacto .formulario.sending:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+#contacto .formulario .fader {
+    opacity: 1;
+    
+    -webkit-transition: opacity 200ms ease-out;
+    -moz-transition: opacity 200ms ease-out;
+    -o-transition: opacity 200ms ease-out;
+    transition: opacity 200ms ease-out;
+}
+#contacto .formulario.sending .fader {
+    opacity: 0.2;
+}
+
+#contacto .formulario.sending .boton {
+    display: none;
+}
+
+#contacto .formulario .loader {
+    display: none;
+    padding: 11px 0;
+    font-size: 1.9em;
+    font-weight: 700;
+    line-height: 1;
+    color: #3057a5;
+}
+#contacto .formulario.sending .loader {
+    display: block;
+}
+#contacto .formulario .loader:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    position: relative;
+    top: -2px;
+    margin-right: 10px;
+    border: 4px solid rgba(48, 87, 165, 0.18);
+    border-top-color: #3057a5;
+    border-radius: 50%;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#contacto .formulario.sending .loader:before {
+    -webkit-animation: loading 700ms linear infinite;
+    -moz-animation: loading 700ms linear infinite;
+    animation: loading 700ms linear infinite;
+}
+#contacto .formulario.sending.sent .loader {
+    display: none;
+}
+
+#contacto .formulario .response {
+    display: none;
+    padding: 9px 0;
+    font-size: 2em;
+    color: #3057a5;
+    font-weight: 700;
+}
+#contacto .formulario.sent .response {
+    display: block;
+}
+
+/* ********************** de Mobile a TABLET ********************** */
+
+@media (min-width: 768px) {
+
+    #contacto{
+        position: relative;
+    }
+    #contacto .mapa{
+        height: 300px;
+    }
+
+}
+
+
+
+
+/* ********************** de Tablet a DESKTOP ********************** */
+
+@media  (min-width: 980px) {
+
+    #contacto .mapa{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 35%;
+        height: 100%;
+    }
+    #contacto .formulario{
+        width: 60%;
+    }
+
+}
+
+
+
+@keyframes loading{
+    0%{
+        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+@-webkit-keyframes loading{
+    0%{
+        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+@-moz-keyframes loading{
+    0%{
+        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+@-o-keyframes loading{
+    0%{
+        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+
+
+
+
+

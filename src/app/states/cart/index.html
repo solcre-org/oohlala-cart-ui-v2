@@ -1,0 +1,77 @@
+<article id="carrito" class="proceso-compra">
+
+  <h2 class="notVisible">Carrito</h2>
+
+  <nav class="fixedNav ">
+    <h2 class="notVisible">Navegacion interna</h2>
+    <ul class="listado wrapper"><!--
+    --><li class="actual"><button class="anchor"><span class="num">1</span>Mi carrito</button></li><!--
+  --><li><button class="anchor" ng-click="goToShipping()" ng-disabled="!data.nextStepReady"><span class="num">2</span>Envio y forma de pago</button></li><!--
+--><li><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
+--><li><button class="anchor"><span class="num">4</span>Arma tus productos</button></li><!--
+--></ul>
+</nav>
+
+
+<div class="section wrapper container">
+  <div class="cols"><!--
+  --><div class="col tabla">
+  <h2 class="titulo x2">Mi carrito</h2>
+  <p class="text">Lista de articulos en el carrito</p>
+
+  <div class="empty-cart" ng-if="productsInCart.length == 0">
+    <div class="foto"></div>
+    <p class="text error">No tiene productos en el carrito aun.</p>
+  </div>
+
+  <table id="tabla-carrito" class="" ng-if="productsInCart.length > 0">
+
+    <thead>
+
+      <th class="text" colspan="3">Producto</th>
+      <th class="text">Cantidad</th>
+      <th class="text">Precio</th>
+
+    </thead>
+
+    <tbody>
+
+
+      <tr class="item" ng-repeat="product in productsInCart track by $index">
+        <td class="eliminar-holder">
+          <button type="button" class="eliminar" ng-click="deleteProduct(product.details.id)"><span></span></button>
+        </td>
+        <td class="foto-holder">
+          <div class="foto-container">
+            <div image-loader class="foto" ng-model="product.details.picture"></div>
+          </div>
+        </td>
+
+        <td class="texto-holder">
+          <div class="texto-container">
+            <p class="text"><a href="{{product.details.productUrl}}">{{product.details.productDetail}}</a></p>
+            <p class="caption"> {{product.details.name}}</p>
+            <p class="caption" ng-if="product.details.pictureQuant > 0"> x{{product.details.pictureQuant}}  fotos</p>
+          </div> <!-- .texto-container -->
+        </td>
+
+
+        <td class="cantidad">
+          <input type="number" size="3" value="1" min="1" step="1" ng-model="product.details.quantity" ng-change="updateQuantities()" ng-class="{'error':data.errorInQuantity[$index]}">
+        </td>
+
+
+        <td class="precio">$ {{product.details.productPrice + product.details.extraPrice}}</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div><!--
+--><div class="col resumen">
+<resumen-compra-directive on-next-state-click="goToShipping()"></resumen-compra-directive>
+</div><!--
+--></div>
+</div>
+</article>

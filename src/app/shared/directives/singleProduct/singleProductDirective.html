@@ -1,0 +1,129 @@
+
+<li class="item producto-comp" ng-class="{'empty': model.length == 0}" data-estado="{{state.state}}">
+  <div class="head-item">
+    <h3 class="subtitulo">{{name}}</h3>
+    <p class="caption">{{maxPictures}} fotos</p>
+    <span class="cantidad" ng-class="{'completado':ready, 'error': problem}">{{loadedPictures}}/{{maxPictures}}</span>
+  </div> <!-- .head-item -->
+
+  <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-disabled="(state.state != 'default') || !paid" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1">
+
+    <svg xmlns="http://www.w3.org/2000/svg" >
+      <rect x="0" y="0" class="path" width="100%" height="100%"/>
+    </svg>
+
+    <div class="placeholder" ng-if="model.lenght != 0">
+      <span class="caption" ng-bind-html="data.dropMessage"></span>
+    </div>
+
+    <ul class="drop" ng-if="model.length != 0" ui-sortable="sortableOptions" ng-model="model"><!--
+    --><li ng-repeat="picture in model track by $index" class="foto-holder">
+
+    <div class="foto myHandle" ng-class="{'error': !picture.proportions}" style="background-image:url({{picture.base64}})"></div>
+    <label class="foto-check" ng-click="markPicture(picture.id)">
+      <input type="checkbox"  value="" ng-model="picturesToDelete[picture.id]">
+      <span class="holder"></span><!-- .foto-->
+    </label>
+
+    <button type="button" class="btn-foto btn-crop openPopup" ng-click="openEditPicture(picture)"></button>
+
+</li><!--
+--></ul> <!-- .drop -->
+
+</div> <!-- .drop-container -->
+
+<div class="acciones">
+  <div class="container action default">
+    <button type="button" class="caption tool-holder" ngf-select="upload($files)" accept="image/*" ngf-multiple="true" ng-disabled="ready">Añadir más (max 10MB)</button>
+    <div class="right">
+      <button type="button" class="caption" ng-click="enterSortState()" ng-hide="revelado">Ordenar</button>
+      <button type="button" class="caption activo" ng-click="setState('delete')">Eliminar</button>
+    </div> <!-- .right -->
+  </div> <!-- .acciones-container -->
+  <div class="container action delete">
+    <div class="select-buttons">
+      <div class="tool-holder hidden-mobile"><span class="tooltip">Seleccione las fotos que quiera eliminar</span></div>
+      <button type="button" class="text" ng-click="setAllPicturesToDelete()">Seleccionar todas</button>
+      <button type="button" class="text" ng-click="resetPicturesToDelete()">Deseleccionar todas</button>
+    </div> <!-- .select-buttons -->
+    <div class="right">
+      <button type="button" class="caption" ng-click="setState('default')">Cancelar</button>
+      <button type="button" class="caption activo" ng-click="deletePictures()" ng-disabled="!hasPicturesMarkedForDelete()">Eliminar fotos</button>
+    </div> <!-- .right -->
+  </div> <!-- .acciones-container -->
+  <div class="container action orden">
+    <div class="tool-holder"><span class="tooltip">Arrastre las fotos a la posición deseada</span></div>
+    <div class="right">
+      <button type="button" class="caption" ng-click="reversePictureOrder()">Cancelar</button>
+      <button type="button" class="caption activo" ng-click="setState('default')">Guardar orden</button>
+    </div> <!-- .right -->
+  </div> <!-- .acciones-container -->
+  <div class="container action crop">
+    <div class="tool-holder"><span class="tooltip">Texto</span></div>
+    <div class="right">
+      <button type="button" class="caption activo" ng-click="setState('default')">Terminado</button>
+    </div> <!-- .right -->
+  </div> <!-- .acciones-container -->
+</div> <!-- .acciones -->
+
+<div class="regalo">
+  <label>
+    <input type="checkbox"  value="" ng-model="isGift">
+    <span class="holder"></span>
+    <span class="caption">Es un regalo</span>
+  </label>
+  <div class="dedicatoria" ng-if="isGift">
+    <p class="caption">Agregar dedicatoria</p>
+    <textarea placeholder="Ingrese su mensaje..." rows="5" ng-model="$parent.giftMessage"></textarea>
+  </div> <!-- .dedicatoria -->
+</div> <!-- .regalo -->
+
+
+
+<div class="popup-holder scrollable" ng-class="{'showEditAnimation':editMode}">
+  <div class="popup">
+    <button type="button" class="close-popup" ng-click="closeEditPicture()"><span></span></button>
+    <div class="item producto-comp" data-estado="orden">
+      <div class="head-item">
+        <h3 class="subtitulo">Encuadrar foto</h3>
+      </div> <!-- .head-item -->
+      <div class="drop-container revelado encuadre">
+
+        <div class="drop"><!--
+        --><div class="foto-holder2">
+
+        <img id="cropImage" class="pictureCrop2" ng-src="{{editingPicture.base64}}" ng-show="editPictureReady">
+
+
+
+      </div><!--
+      --></div> <!-- .drop -->
+    </div> <!-- .draggable -->
+
+    <div class="acciones">
+      <div class="container action orden">
+        <div class="select-buttons">
+          <p class="text">Cantidad:</p>
+          <div class="dropdown">
+            <div class="select-holder">
+              <select ng-init="pictureQuantForPrint = options[0]"
+              ng-model="croppingImageQuant"
+              ng-options="quant for quant in pictureQuantForPrint">
+            </select>
+          </div> <!-- .select-holder -->
+        </div>
+        <button type="button" class="rotar" ng-click="rotateCounter()"></button>
+      </div> <!-- .select-buttons -->
+      <div class="right">
+        <button type="button" class="caption" ng-click="closeEditPicture()">Cancelar</button>
+        <button type="button" class="caption activo" ng-click="getCroppedImage()">Guardar</button>
+      </div> <!-- .right -->
+    </div> <!-- .acciones-container -->
+  </div> <!-- .acciones -->
+
+</div>
+
+</div> <!-- .popup-holder -->
+<div class="overlay"></div> <!-- .overlay -->
+</div> <!-- .popup -->
+</li>

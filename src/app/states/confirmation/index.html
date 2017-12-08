@@ -1,0 +1,10 @@
+
+<main>
+  <div id="confirmacion" class="section wrapper" data-message="{{data.dataMessage}}">
+    <div class="container">
+      <div class="foto"></div>
+      <h2 class="titulo x2" ng-class="{'error': !data.success, 'completado':data.success}">{{data.title}}</h2>
+      <p class="text" ng-bind-html="data.message"></p>
+    </div> <!-- .container -->
+  </div>
+</main>

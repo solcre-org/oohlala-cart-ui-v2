@@ -1,0 +1,69 @@
+#ampliado .bx-wrapper{
+    position: relative;
+}
+#ampliado .bx-controls .bx-next:before,
+#ampliado .bx-controls .bx-prev:before{
+    border-color: #eaeaea;
+}
+#ampliado .foto{
+    border-radius: 5px;
+    position: relative;
+}
+#ampliado .foto:before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
+}
+#ampliado .container{
+    margin-top: 40px;
+}
+#ampliado .container .caption{
+    color: #8f8f8f;
+    opacity: .7;
+}
+#ampliado .container .titulo.x2{
+    margin-top: 7px;
+}
+#ampliado .container .precio{
+    margin-top: 20px;
+    color: #22537f;
+}
+#ampliado .container .descripcion,
+#ampliado .container .dropdown{
+    margin-top: 20px;
+}
+#ampliado .container .boton{
+    margin-top: 30px;
+}
+#ampliado .container .dropdown{
+    margin-right: 12px;
+}
+#ampliado .container .dropdown .text{
+    display: block;
+}
+#ampliado .container .dropdown .select-holder{
+    margin-top: 5px;
+}
+
+/* ********************** de Mobile a TABLET ********************** */
+
+@media (min-width: 768px) {
+
+    #ampliado .container{
+        margin-top: 20px;
+    }
+}
+
+/* ********************** de Tablet a DESKTOP ********************** */
+
+@media  (min-width: 980px) {
+
+   
+
+
+}
+
+
+

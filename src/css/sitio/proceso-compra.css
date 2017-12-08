@@ -1,0 +1,274 @@
+/* Fixed nav */
+
+.proceso-compra .fixedNav{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid #eaeaea;
+}
+.proceso-compra .fixedNav .wrapper{
+    padding: 0 15px;
+}
+.proceso-compra .fixedNav .listado{
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.proceso-compra .fixedNav .listado li{
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    text-align: center;
+    position: relative;
+}
+.proceso-compra .fixedNav .listado li .anchor{
+    display: block;
+    padding: 18px 15px;
+    font-size: 1.4em;
+    color: #8f8f8f;
+    opacity: .4;
+
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+.proceso-compra .fixedNav .listado li.actual .anchor{
+    font-weight: 700;
+    color: #22537f;
+    opacity: 1;
+}
+.proceso-compra .fixedNav .listado li .anchor .num{
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+/* Resumen */
+
+.proceso-compra .resumen .listado li.total{
+    color: #22537f;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-align: center;
+}
+.proceso-compra .resumen .listado li.total span{
+    margin-left: 5px;
+}
+.proceso-compra .resumen .boton{
+    display: block;
+    margin: 0 auto;
+    margin-top:20px;
+    background: #edc05d;
+}
+.proceso-compra .resumen .boton:hover,
+.proceso-compra .resumen .boton:focus{
+    color: #fff !important;
+}
+.proceso-compra .resumen .boton:hover:after,
+.proceso-compra .resumen .boton:focus:after{
+    border-color:#fff !important;
+}
+.proceso-compra .resumen .boton span{
+    display: none;
+}
+.proceso-compra .resumen .text.disclaimer{
+    margin-top: 20px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+
+@media (max-width: 767px) {
+
+    /* Resumen */
+
+    .proceso-compra  .resumen{
+        width: 100%;
+        padding: 17px 22px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background: #fff;
+        border-top: 1px solid #eaeaea;
+        box-shadow:0px -3px 17px 0px rgba(17, 77, 128, 0.09);
+        z-index: 100;
+        text-align: justify;
+        line-height: 0;
+
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+    } 
+    .proceso-compra .resumen:after{
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+    }
+    .proceso-compra  .resumen .listado,
+    .proceso-compra .resumen .boton{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .proceso-compra  .resumen .boton{
+        margin-top: 0;
+        line-height: 1;
+    }
+
+
+
+}
+
+@media (min-width: 480px) and (max-width:767px) {
+
+    .proceso-compra  .resumen{
+        padding: 20px;
+    }
+    .proceso-compra  .resumen .listado li.total{
+        font-size: 2em;
+    }
+
+}
+
+/* ********************** de Mobile a TABLET ********************** */
+
+@media (min-width: 768px) {
+
+    .proceso-compra .fixedNav{
+        border-bottom: none;
+    }
+    .proceso-compra .fixedNav .listado{
+        text-align: center;
+        overflow: visible;
+    }
+    .proceso-compra .fixedNav .listado li:before,
+    .proceso-compra .fixedNav .listado li:after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 2px;
+        height: 2px;
+        background: #eaeaea;
+    }
+
+    .proceso-compra .fixedNav .listado li:after{
+        width: 0%;
+
+        -webkit-transition: width 300ms ease-out,
+            background 300ms ease-out;
+        -moz-transition: width 300ms ease-out,
+            background 300ms ease-out;
+        -o-transition: width 300ms ease-out,
+            background 300ms ease-out;
+        transition: width 300ms ease-out,
+            background 300ms ease-out;
+
+    }
+    .proceso-compra .fixedNav .listado li.actual:after{
+        width: 100%;
+        background: #22537f;
+    }
+    .proceso-compra .fixedNav .listado li:first-child:before,
+    .proceso-compra .fixedNav .listado li.actual:first-child:after{
+        right: 0;
+        left: auto;
+        width: 1000px;
+    }
+    .proceso-compra .fixedNav .listado li:last-child:before,
+    .proceso-compra .fixedNav .listado li.actual:last-child:after{
+        width: 1000px;
+    }
+
+
+    .proceso-compra .container .cols{
+        margin: 0;
+    }
+    .proceso-compra .container .cols > .col:first-child{
+        padding-right: 60px;
+        padding-left: 0;
+    }
+    .proceso-compra  .tabla{
+        width: calc(100% - 340px);
+    }
+    .proceso-compra .resumen{
+        display: inline-block;
+        width:340px;
+        padding: 40px 30px;
+        background: #fff;
+        box-shadow:0px 2px 17px 0px rgba(17, 77, 128, 0.09);
+        border-radius: 5px;
+
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+    }
+    .proceso-compra .resumen .titulo{
+        color: #edc05d;
+    }
+    .proceso-compra  .resumen .listado {
+        margin-top:30px;
+    }
+    .proceso-compra .resumen .listado li{
+        padding: 25px 0;
+        position: relative;
+        padding-right: 60px;
+        border-top: 1px solid #eaeaea;
+    }
+    .proceso-compra  .resumen .listado li span{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -17px;
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+    .proceso-compra .resumen .listado li.total{
+        font-size: 1.8em;
+        text-align: left;
+    }
+    .proceso-compra .resumen .listado li.total span{
+        margin-top: -25px;
+    }
+    .proceso-compra  .resumen .boton{
+        display: block;
+        margin: 0 auto;
+        background: #edc05d;
+        margin-top:20px;
+    }
+    .proceso-compra  .resumen .boton span{
+        display: inline-block;
+    }
+    
+    /* Armado productos */
+    
+    .armado-productos.proceso-compra  .tabla{
+        width: 100% !important;
+    }
+
+}
+
+@media (min-width:768px) and (max-width:980px){
+
+    .proceso-compra .tabla{
+        width: calc(100% - 260px);
+    }
+    .proceso-compra .resumen{
+        width: 260px;
+    }
+
+}
+
+
+
+/* ********************** de Tablet a DESKTOP ********************** */
+
+@media  (min-width: 980px) {
+
+    .proceso-compra .fixedNav .listado li .anchor{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+}

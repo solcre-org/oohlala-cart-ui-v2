@@ -1,0 +1,58 @@
+
+#confirmacion .container{
+    display: block;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+}
+#confirmacion .container .titulo{
+    margin-top: 20px;
+}
+#confirmacion .container .text{
+    margin-top: 20px
+}
+#confirmacion[data-message="realizado"] .foto,
+#confirmacion[data-message="error"] .foto{
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    background-image: url(../../images/iso-completo.svg);
+    position: relative;
+    left:-20px;
+}
+#confirmacion[data-message="error"] .foto{
+    background-image: url(../../images/iso-error.svg);
+    left: 0;
+}
+
+#confirmacion .foto:before{
+    content: "";
+    display: block;
+    padding-bottom: 130%;
+    width: 100%;
+    height: 0;
+}
+
+
+
+
+/* ********************** de Mobile a TABLET ********************** */
+
+@media (min-width: 768px) {
+
+}
+
+
+
+
+/* ********************** de Tablet a DESKTOP ********************** */
+
+@media  (min-width: 980px) {
+
+
+
+
+}
+
+
+

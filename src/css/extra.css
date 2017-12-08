@@ -1,0 +1,46 @@
+.displayEditImage{
+  display:block;
+}
+
+.foto-holder2{
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.pìctureCrop {
+  width: 84vw;
+  display: block;
+}
+
+
+.pìctureCrop2 {
+  max-width: 100%;
+}
+
+.proceso-compra .fixedNav .listado li button {
+  display: block;
+  padding: 18px 15px;
+  font-size: 1.4em;
+  color: #8f8f8f;
+  opacity: .4;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.proceso-compra .fixedNav .listado li button .num {
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+.proceso-compra .fixedNav .listado li.actual button {
+  font-weight: 700;
+  color: #22537f;
+  opacity: 1;
+}
+
+.bold-order{
+  font-weight: 700;
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app="oohlalaCart">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Oohlala-cart</title>
+
+
+  <!-- build:css main.css -->
+  <link rel="stylesheet" href="css/fixed/1-reset.css" />
+  <link rel="stylesheet" href="css/fixed/2-screen.css" />
+  <link rel="stylesheet" href="css/fixed/3-popup-comp.css" />
+  <link rel="stylesheet" href="css/sitio/proceso-compra.css" />
+  <link rel="stylesheet" href="css/sitio/producto-comp.css" />
+  <link rel="stylesheet" href="css/sitio/popup-comp.css" />
+  <link rel="stylesheet" href="css/sitio/carrito.css" />
+  <link rel="stylesheet" href="css/sitio/envio.css" />
+
+  <link  href="/scripts/cropperjs/dist/cropper.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/extra.css" />
+
+  <!-- endbuild -->
+
+  <link href="https://fonts.googleapis.com/css?family=Assistant:700|Montserrat:300,300i,700,700i" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+</head>
+<body>
+
+
+
+  <header id="header"><!--
+  --><div class="wrapper"><!--
+--><div class="top">
+<h1 id="logo"><a href="index.html" class="anchor">Oohlala!</a></h1>
+<a href="carrito.html" class="carrito hidden-tablet hidden-desktop"><span class="num">2</span></a>
+<button type="button" id="menu-bt" class="hidden-tablet hidden-desktop"><span></span></button>
+</div> <!-- .top -->
+<div class="nav-scrollable">
+  <div class="nav-viewport">
+    <nav id="nav">
+      <h2 class="notVisible">Navegación</h2>
+      <ul id="menu">
+        <li class=""><a href="index.html" class="anchor">Home</a></li>
+        <li class="conSubmenu"><a href="" class="anchor">Tienda</a>
+          <ul><!--
+          --><li class=""><a href="categoria.html" class="">Fotolibros</a></li><!--
+        --><li class=""><a href="categoria.html" class="">Vintage Folder</a></li><!--
+      --><li class=""><a href="categoria.html" class="">Fotobox</a></li><!--
+    --><li class=""><a href="categoria.html" class="">Portaretratos Patinados</a></li><!--
+  --><li class=""><a href="categoria.html" class="">Marcos</a></li><!--
+--><li class=""><a href="categoria.html" class="">Imánes</a></li><!--
+--><li class=""><a href="categoria.html" class="">Collages</a></li><!--
+--><li class=""><a href="categoria.html" class="">Tazas</a></li><!--
+--><li class=""><a href="categoria.html" class="">Revelado</a></li><!--
+--></ul>
+</li>
+<li><a href="#footer" class="anchor">Contacto</a></li>
+<li><a href="carrito.html" class="carrito hidden-mobile"><span class="num">2</span></a></li>
+</ul>
+
+</nav>
+</div> <!-- .nav-viewport -->
+</div> <!-- .nav-scrollable -->
+</div> <!-- .wrapper -->
+<div class="nav-overlay mobile"></div> <!-- .nav-overlay -->
+
+</header> <!-- #header -->
+
+<main>
+
+  <ui-view></ui-view>
+
+</main>
+
+<footer id="footer">
+  <div class="wrapper">
+    <div class="cols"><!--
+    --><div class="col">
+    <h3 class="caption">Opciones de pago</h3>
+    <ul>
+      <li><a href="#"></a></li>
+    </ul>
+  </div><!--
+  --><div class="col">
+  <h3 class="caption">Redes sociales</h3>
+  <ul class="redes">
+    <li class="facebook"><a href="#">/oohlala</a></li>
+    <li class="twitter"><a href="#">@oohlala</a></li>
+    <li class="instagram"><a href="#">@oohlala_fotos</a></li>
+  </ul>
+</div><!--
+--><div class="col">
+<h3 class="caption">Datos de contacto</h3>
+<ul>
+  <li><a href="mailto:contacto@oohlala.com">contacto@oohlala.com</a></li>
+  <li><a href="tel:+59894941212">094941212</a><span class="separador">|</span><a href="tel:24123312312">342243232</a></li>
+  <li>Ponce 1443, esq. Palmar</li>
+  <li>Montevideo, Uruguay</li>
+</ul>
+</div><!--
+--></div> <!-- .cols -->
+</div> <!-- .wrapper -->
+<div class="disclaimer">
+  <div class="wrapper">
+    <ul class="links">
+      <li><a href="#" class="sublink">Términos y condiciones</a></li>
+      <li><a href="#" class="sublink">Políticas de envío</a></li>
+    </ul> <!-- .links -->
+    <p><strong>Oohlala © 2017.</strong> Todos los derechos reservados.</p>
+  </div> <!-- .wrapper -->
+</div> <!-- .disclaimer -->
+</footer>
+
+
+</body>
+</html>
+
+
+
+<!-- build:js app.min.js -->
+<script type="text/javascript" src="scripts/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui/jquery-ui.js"></script>
+<script src="scripts/angular/angular.min.js"></script>
+<script src="scripts/angular-resource/angular-resource.min.js"></script>
+<script src="scripts/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="scripts/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="scripts/angular-animate/angular-animate.min.js"></script>
+<script src="scripts/cropperjs/dist/cropper.min.js"></script>
+<script type="text/javascript" src="scripts/angular-ui-sortable/sortable.min.js"></script>
+<script src="scripts/angular-ui-router/release/angular-ui-router.min.js" ></script>
+<script src="scripts/angular-local-storage/dist/angular-local-storage.min.js" ></script>
+<script src="scripts/angular-sanitize/angular-sanitize.min.js" ></script>
+
+
+<script src="app/configuration/configuration.js"></script>
+<script src="app/app.js" ></script>
+
+<script src="app/shared/factories/pictureResource.js"></script>
+<script src="app/shared/factories/orderResource.js"></script>
+<script src="app/shared/factories/paymentGatewayResource.js"></script>
+
+<script src="app/states/cart/cartController.js" ></script>
+<script src="app/states/cart/cartService.js" ></script>
+
+<script src="app/states/shipping/shippingController.js" ></script>
+<script src="app/states/shipping/shippingService.js" ></script>
+
+<script src="app/states/customization/customizationController.js" ></script>
+<script src="app/states/customization/customizationService.js" ></script>
+
+<script src="app/states/confirmation/confirmationController.js" ></script>
+<script src="app/states/confirmation/confirmationService.js" ></script>
+
+<script src="app/shared/directives/singleProduct/singleProductDirective.js" ></script>
+<script src="app/shared/directives/singleProduct/singleProductService.js" ></script>
+
+<script src="app/shared/directives/resumenCompra/resumenCompraDirective.js" ></script>
+<script src="app/shared/directives/resumenCompra/resumenCompraService.js" ></script>
+
+<script src="app/shared/animations/showEditAnimation.js" ></script>
+
+<script src="app/shared/directives/imageLoader/imageLoader.js" ></script>
+
+<script src="app/shared/services/ordersService.js" ></script>
+<script src="app/shared/services/localStorageService.js" ></script>
+
+<script src="scripts/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+
+<!-- endbuild -->
+
+
+
+</body>
+</html>

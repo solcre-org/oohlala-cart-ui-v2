@@ -1,0 +1,11 @@
+<div>
+<h2 class="titulo hidden-mobile">Resumen de compra</h2>
+<ul class="listado">
+  <li class="text hidden-mobile">Cantidad de productos <span>{{data.finalProductsQuantity}}</span></li>
+  <li class="text hidden-mobile" ng-show="showShippingCost">Envío <span>$ {{data.shippingPrice}}</span></li>
+  <li class="text hidden-mobile">Subtotal <span>$ {{data.finalProductPrice|number:2}}</span></li>
+  <li class="text total">Total<span>$ {{data.finalProductPrice + data.shippingPrice|number:2}}</span></li>
+</ul>
+<button type="button" class="boton" ng-disabled="!data.nextStepReady" ng-click="onNextStateClick()">Siguiente <span>paso</span></button>
+<p class="text disclaimer hidden-mobile" ng-if="data.showNextStepMessage" ng-class="{'loading':data.orderLoading}">{{data.nextStepReadyMessage}}</p>
+</div>
