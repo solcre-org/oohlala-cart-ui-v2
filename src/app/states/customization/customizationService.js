@@ -58,7 +58,6 @@ app.service("CustomizationService", [
         ){
           $state.go('cart');
         }else{
-
           _self.data.pictureQuantities = $stateParams.pictureQuantities;
           _self.data.pictureProportions = $stateParams.pictureProportions;
           _self.formatProducts($stateParams.order.items)
@@ -69,8 +68,6 @@ app.service("CustomizationService", [
 
         //receives the order from the cart and runs a formatting method
         $rootScope.sectionId = 'listado-compra';
-
-
       },
 
       //receives the order object as parameter
@@ -89,12 +86,22 @@ app.service("CustomizationService", [
           for(i = 0; i < order.quantity; i++){
             //product id, the same if quantity is more than 1
             productInOrder.id = order.id
-            productInOrder.name = order.productDetail + ' - ' + order.name;
+            // productInOrder.name = order.productDetail + ' - ' + order.name;
             //number of pictures in the product
 
-            productInOrder.maxPictures = _self.data.pictureQuantities[order.productVersionId.toString()];
-            //picture proportions
-            productInOrder.pictureProportions = _self.data.pictureProportions[order.productVersionId.toString()];
+            if(order.hasVersion){
+              productInOrder.name = order.productDetail + ' - ' + order.name;
+              productInOrder.maxPictures = _self.data.pictureQuantities[order.productVersionId.toString()];
+
+              //picture proportions
+              productInOrder.pictureProportions = _self.data.pictureProportions[order.productVersionId.toString()];
+            }else{
+              productInOrder.name = order.productDetail;
+              productInOrder.maxPictures = _self.data.pictureQuantities[0][order.product];
+
+              //picture proportions
+              productInOrder.pictureProportions = _self.data.pictureProportions[0][order.product];
+            }
 
             //indicates if the product is revelado. Markup and options change.
             //productInOrder.revelado = order.isRevelado;
@@ -183,34 +190,40 @@ app.service("CustomizationService", [
               //first we go through the products array
               _self.data.productsInCart.forEach(function(product, productIndex){
                 //for each product, we go through the pictures in it
+
+
+                console.log(product.pictures);
+
                 product.pictures.forEach(function(picture, pictureIndex){
                   //for each picture, we load the attributes in the formData to send
-                  formData = new FormData();
-
-                  //tell the server where to store the pictures
-                  formData.append('order_id', _self.data.picturesFolder);
-                  orderDetail = _self.data.orderArrayFromAPI[_self.data.orderArrayForFolder[productIndex]][0];
-
-
-                  formData.append('order_detail_position', orderDetail);
-                  formData.append('detail_position', 1);
-                  //photo_numbers are consecutive, independent of the picture data
-                  // formData.append('photo_number', pictureIndex + 1);
-
-                  //the picture is named a generic name because the server overrides it.
-                  //the file extension is taken from the blob type
-                  // ---   (L) Regex   ---
-                  pictureName = product.positionDetail+'.'+picture.file.type.toString().match(/\w*\/(\w*)$/)[1];
-
-                  formData.append('image', picture.file, pictureName);
-                  // formData.append('position_detail', product.positionDetail);
-                  formData.append('message_file', product.giftMessage);
-
 
                   //if more than one picture is set to revelar, then the picture is re-sent
                   //changing the id to add 100 for each iteration
                   for(var i = 0; i < picture.quant; i++){
 
+                    formData = new FormData();
+
+                    //tell the server where to store the pictures
+                    formData.append('order_id', _self.data.picturesFolder);
+                    orderDetail = _self.data.orderArrayFromAPI[_self.data.orderArrayForFolder[productIndex]][0];
+
+
+                    formData.append('order_detail_position', orderDetail);
+                    formData.append('detail_position', 1);
+                    //photo_numbers are consecutive, independent of the picture data
+                    // formData.append('photo_number', pictureIndex + 1);
+
+                    //the picture is named a generic name because the server overrides it.
+                    //the file extension is taken from the blob type
+                    // ---   (L) Regex   ---
+                    pictureName = product.positionDetail+'.'+picture.file.type.toString().match(/\w*\/(\w*)$/)[1];
+
+                    formData.append('image', picture.file, pictureName);
+                    // formData.append('position_detail', product.positionDetail);
+                    formData.append('message_file', product.giftMessage);
+
+                    //if more than one picture is set to revelar, then the picture is re-sent
+                    //changing the id to add 100 for each iteration
                     formData.append('photo_number', i * 100 + pictureIndex + 1);
 
                     //store promises from the $resource
@@ -273,11 +286,11 @@ app.service("CustomizationService", [
 
 
       displayErrorMessage:function(message, time, isError){
-if(isError){
-_self.data.errorMessageBackgroundColor = '#d05959';
-}else{
-  _self.data.errorMessageBackgroundColor = 'green';
-}
+        if(isError){
+          _self.data.errorMessageBackgroundColor = '#d05959';
+        }else{
+          _self.data.errorMessageBackgroundColor = 'green';
+        }
         _self.data.errorMessage = message;
         _self.data.showErrorMessage = true;
         if(time != -1){

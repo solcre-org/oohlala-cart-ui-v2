@@ -148,7 +148,6 @@ app.service("CartService", [
         _self.data.order = {'items':[]};
         //for each element in the cart, the values are stored in the auxiliary object
         OrdersService.data.productsInCart.forEach(function(product, index){
-
           if(product.details.id){
             item.hasVersion = true;
             item.productVersionId = product.details.id;
@@ -164,6 +163,8 @@ app.service("CartService", [
             //product in the cart with no versions
             item.hasVersion = false;
             item.productVersionId = null;
+            item.picture = product.details.picture;
+            item.productDetail = product.details.productDetail;
             pictureQuantitiesNoVersion[product.details.productId] = product.details.pictureQuant;
             _self.data.pictureQuantities[0] = pictureQuantitiesNoVersion;
             pictureProportionsNoVersion[product.details.productId] = _self.getPictureProportions(product.details.name);
