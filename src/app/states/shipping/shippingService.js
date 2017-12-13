@@ -35,11 +35,15 @@ app.service("ShippingService", [
         showSendError:false,
         pictureQuantities:{},
         pictureProportions:{},
-        shippingPrice:[0, 0]
+        shippingPrice:[0, 0],
+        orderFolderName:'',
+        productWithFolder:null
 
       },
 
       initialize:function(){
+        //scrolls to the top of the page
+        $anchorScroll('topForScroll');
         //section id name for DOM element classes
         $rootScope.sectionId = 'envio';
         //enables the "Siguiente Paso" button
@@ -54,15 +58,19 @@ app.service("ShippingService", [
 
         //the items for the order are received via $stateparams
         _self.data.order = $stateParams.order;
-        _self.data.pictureQuantities = $stateParams.pictureQuantities;
-        _self.data.pictureProportions = $stateParams.pictureProportions;
+        // _self.data.pictureQuantities = $stateParams.pictureQuantities;
+        // _self.data.pictureProportions = $stateParams.pictureProportions;
+
+        //receives the details to associate the pictures
+        _self.data.orderFolderName = $stateParams.folder;
+        _self.data.productWithFolder = $stateParams.orderArray;
 
         _self.processShippingMethods()
       },
 
       processShippingMethods:function(){
         var pickupShipping = {};
-        var normalShipping = {}
+        var normalShipping = {};
         if(Shipping !== null){
           _self.data.shippingMethods = angular.copy(Shipping._embedded.products);
         }
@@ -204,11 +212,15 @@ app.service("ShippingService", [
         //store picture quantities of each product in the database
         aux['shipping'] = _self.data.userDetails.pickup;
         aux['shippingType'] = _self.data.userDetails.type;
-        aux['quantity'] = angular.copy(_self.data.pictureQuantities);
-        aux['proportions'] = angular.copy(_self.data.pictureProportions);
-        _self.data.order.extraData = [];
-        _self.data.order.extraData.push(angular.copy(aux));
+        // aux['quantity'] = angular.copy(_self.data.pictureQuantities);
+        // aux['proportions'] = angular.copy(_self.data.pictureProportions);
+        aux['data'] = {};
+        aux.data['orderFolderName'] = _self.data.orderFolderName;
+        aux.data['productWithFolder'] = _self.data.productWithFolder;
+        
+        _self.data.order.extraData = angular.copy(aux);
         //when the object is created the OrderResource is created
+
         var orderToSend = new OrderResource(_self.data.order);
         orderToSend.$save(function(response){
           if(response.id){

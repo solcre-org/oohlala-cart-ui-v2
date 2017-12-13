@@ -15,4 +15,6 @@ app.controller("CustomizationController", [
     $scope.showOverflowError = CustomizationService.showOverflowError;
     $scope.getReady = CustomizationService.getReady;
 
+    $scope.requestFolder = CustomizationService.requestFolder;
+
   }]);

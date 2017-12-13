@@ -2,13 +2,14 @@
 
   <h2 class="notVisible">Carrito</h2>
 
+
   <nav class="fixedNav ">
     <h2 class="notVisible">Navegacion interna</h2>
     <ul class="listado wrapper"><!--
-    --><li class="actual"><button class="anchor"><span class="num">1</span>Mi carrito</button></li><!--
-  --><li><button class="anchor" ng-click="goToShipping()" ng-disabled="!data.nextStepReady"><span class="num">2</span>Envio y forma de pago</button></li><!--
+    --><li class="actual"><button class="anchor"><span class="num">1</span>Mi carrito</<button></li><!--
+  --><li><button class="anchor"><span class="num">2</span>Armá tus productos</button></li><!--
 --><li><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
---><li><button class="anchor"><span class="num">4</span>Arma tus productos</button></li><!--
+--><li><button class="anchor"><span class="num">4</span>Confirmación</button></li><!--
 --></ul>
 </nav>
 
@@ -70,7 +71,7 @@
 
 </div><!--
 --><div class="col resumen">
-<resumen-compra-directive on-next-state-click="goToShipping()"></resumen-compra-directive>
+<resumen-compra-directive on-next-state-click="goToCustomization()"></resumen-compra-directive>
 </div><!--
 --></div>
 </div>

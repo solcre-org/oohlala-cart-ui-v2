@@ -18,7 +18,9 @@ app.service("ConfirmationService", [
       },
 
       initialize:function(){
-        _self.data.success = $stateParams.success;
+        //If mercadoPago redirects to this page it's because the payment was successful
+        _self.data.success = true;
+        // _self.data.success = $stateParams.success;
         if(_self.data.success){
           _self.data.title = Confirmation.successTitle;
           _self.data.message = Confirmation.successMessage;

@@ -16,6 +16,6 @@ app.controller("CartController", [
 
     $scope.updateQuantities = CartService.updateQuantities;
     $scope.deleteProduct = CartService.deleteProduct;
-    $scope.goToShipping = CartService.goToShipping;
+    $scope.goToCustomization = CartService.goToCustomization;
 
   }]);

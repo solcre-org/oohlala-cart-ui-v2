@@ -126,10 +126,10 @@ app.service("CartService", [
       },
 
       //navigates to the next state
-      goToShipping:function(){
+      goToCustomization:function(){
         //first, the items information is formatted correctly
         _self.formatOrder();
-        $state.go('shipping', {
+        $state.go('customization', {
           'order':_self.data.order,
           'pictureQuantities':_self.data.pictureQuantities,
           'pictureProportions': _self.data.pictureProportions
@@ -152,6 +152,10 @@ app.service("CartService", [
           if(product.details.id){
             item.hasVersion = true;
             item.productVersionId = product.details.id;
+            item.productDetail = product.details.productDetail;
+            item.name = product.details.name;
+            item.productPrice = product.details.productPrice;
+            item.extraPrice = product.details.extraPrice;
             _self.data.pictureQuantities[product.details.id.toString()] = product.details.pictureQuant;
             _self.data.pictureProportions[product.details.id.toString()] = _self.getPictureProportions(product.details.name);
           }else{

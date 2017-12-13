@@ -1,6 +1,6 @@
 <article id="listado-compra" class="proceso-compra armado-productos">
   <div class="toast-holder" ng-class="{'show': data.showErrorMessage}">
-    <div class="toast">
+    <div class="toast" ng-style="{'background-color':data.errorMessageBackgroundColor}">
       <span class="texto">{{data.errorMessage}}</span>
     </div> <!-- .toast -->
   </div>
@@ -11,9 +11,9 @@
     <h2 class="notVisible">Navegacion interna</h2>
     <ul class="listado wrapper"><!--
     --><li class="actual"><button class="anchor"><span class="num">1</span>Mi carrito</<button></li><!--
-  --><li class="actual"><button class="anchor"><span class="num">2</span>Envio y forma de pago</button></li><!--
---><li class="actual"><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
---><li class="actual"><button class="anchor"><span class="num">4</span>Arma tus productos</button></li><!--
+  --><li class="actual"><button class="anchor"><span class="num">2</span>Armá tus productos</button></li><!--
+--><li><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
+--><li><button class="anchor"><span class="num">4</span>Confirmación</button></li><!--
 --></ul>
 </nav>
 
@@ -28,7 +28,7 @@
 
 <div class="finalizar-pedido section">
   <div class="wrapper">
-    <h2 class="subtitulo">Desea finalizar el pedido?</h2>
+    <h2 class="subtitulo">¿Desea finalizar el pedido?</h2>
     <button type="button" class="boton" ng-disabled="!data.allProductsSet" ng-click="uploadToServer()">Siguiente <span>paso</span></button>
     <p class="text disclaimer" ng-if="!data.allProductsSet" ng-class="{'loading':data.orderLoading}">{{data.confirmationMessage}}</p>
   </div> <!-- .wrapper -->

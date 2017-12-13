@@ -37,26 +37,28 @@ app.config([
 
     var cart = {
       name: 'cart',
+      url: '/cart',
       templateUrl: 'app/states/cart/index.html',
       controller: 'CartController'
     }
 
     var shipping = {
       name: 'shipping',
-      params: {'order':{}, 'pictureQuantities':{}, 'pictureProportions':{}},
+      params: {'folder':null, 'orderArray':null, 'order':null},
       templateUrl: 'app/states/shipping/index.html',
       controller: 'ShippingController'
     }
 
     var customization = {
       name: 'customization',
+      params: {'order':{}, 'pictureQuantities':{}, 'pictureProportions':{}},
       templateUrl: 'app/states/customization/index.html',
       controller: 'CustomizationController'
     }
 
     var confirmation = {
       name: 'confirmation',
-      params:{'success':null, 'orderId':null},
+      url: '/confirmation',
       templateUrl: 'app/states/confirmation/index.html',
       controller: 'ConfirmationController'
     }
@@ -73,22 +75,14 @@ app.config([
   }]);
 
   app.run([
-    '$rootScope',
     '$state',
-    'Configuration',
-    'OrdersService',
     function (
-      $rootScope,
-      $state,
-      Configuration,
-      OrdersService
+      $state
     ) {
 
       angular.element('#oohlalaCart').removeClass('loading');
-      //checks if I have an order variable from Smarty.
-      if(Order.id != -1 && Order.id !== undefined && Order.id !== null){
-        $state.go('customization');
-      }else{
+
+      if(!$state.$current.name){
         $state.go('cart');
       }
 
