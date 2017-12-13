@@ -1,7 +1,7 @@
 var configuration = {
 	apiUrl:'http://www.oohlala.com.uy',
-	uploadUri:'/fileshandler/test/upload.php',
-	requestFolderUri:'/fileshandler/test/upload.php',
+	uploadUri:'/fileshandler/upload.php',
+	requestFolderUri:'/fileshandler/upload.php',
 	cartImagesUrl:'http://api.columnis.com/uploads/035/images/thumbs',
 	cartOrderUrl:'http://api.columnis.com/035/ecommerce/orders',
 	paymentGatewayUrl: 'http://api.columnis.com/035/ecommerce/getPaymentUrl',
@@ -176,7 +176,7 @@ var Shipping = {
 
 
 
-
+/*
 
 
 
