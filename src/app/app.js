@@ -37,7 +37,7 @@ app.config([
 
     var cart = {
       name: 'cart',
-      url: '/cart',
+      url: '',
       templateUrl: 'app/states/cart/index.html',
       controller: 'CartController'
     }
@@ -82,9 +82,11 @@ app.config([
 
       angular.element('#oohlalaCart').removeClass('loading');
 
-      if(!$state.$current.name){
-        $state.go('cart');
-      }
+// console.log(windiw)
+//
+//       if(!$state.$current.name){
+//         $state.go('cart');
+//       }
 
     }
   ]);
