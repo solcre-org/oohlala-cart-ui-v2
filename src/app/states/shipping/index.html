@@ -32,7 +32,7 @@
           <div class="cols"><!--
           --><div class="col">
           <label ng-class="{'focus': focusName == true}">
-            <span class="caption">Nombre completo</span>
+            <span class="caption">Nombre completo (*)</span>
             <input type="text" value="" name="nombre" placeholder="Ingrese su nombre..." class="validate-required" ng-model="data.userDetails.name" ng-focus="focusName = true" ng-blur="focusName = false">
             <label for="nombre" generated="true" class="error" ng-if="!data.userDetails.name && data.formValidation">Debe ingresar su nombre</label>
           </label>
@@ -40,14 +40,14 @@
         </div><!--
         --><div class="col">
         <label ng-class="{'focus': focusMail == true}">
-          <span class="caption">Mail</span>
+          <span class="caption">Mail (*)</span>
           <input type="email" value="" name="email" placeholder="Ingrese su email..." class="validate-required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="data.userDetails.mail" ng-change="formChange()" ng-focus="focusMail = true" ng-blur="focusMail = false">
           <label for="nombre" generated="true" class="error" ng-if="!data.userDetails.mail && data.formValidation">Debe ingresar un mail válido</label>
         </label>
       </div><!--
       --><div class="col">
       <label ng-class="{'focus': focusCell == true}">
-        <span class="caption">Celular</span>
+        <span class="caption">Celular (*)</span>
         <input type="tel" value="" name="celular" placeholder="Ingrese su celular..." class="validate-required" ng-model="data.userDetails.cell" ng-change="formChange()" ng-focus="focusCell = true" ng-blur="focusCell = false">
         <label for="nombre" generated="true" class="error" ng-if="!data.userDetails.cell && data.formValidation">Debe ingresar un celular</label>
       </label>
@@ -62,7 +62,7 @@
 
 </li>
 <li class="separador">
-  <h3 class="titulo" id="formaDeEnvio">Forma de envío</h3>
+  <h3 class="titulo" id="formaDeEnvio">Forma de envío (*)</h3>
 
   <div class="radios">
     <label ng-repeat="method in data.shippingMethods track by $index">
@@ -75,21 +75,21 @@
   <div class="cols" ng-show="data.userDetails.pickup ? data.userDetails.pickup != -1 : false"><!--
   --><div class="col">
   <label ng-class="{'focus': focusAddress == true}">
-    <span class="caption">Dirección principal</span>
+    <span class="caption">Dirección principal (*)</span>
     <input type="text" name="direccion" value="" placeholder="Ingrese su dirección principal..."  class="validate-required" ng-model="data.userDetails.address" ng-focus="focusAddress = true" ng-blur="focusAddress = false">
     <label for="nombre" generated="true" class="error" ng-if="!data.userDetails.address && data.formValidation">Debe especificar su dirección</label>
   </label>
 </div><!--
 --><div class="col">
 <label ng-class="{'focus': focusLandmarks == true}">
-  <span class="caption">Referencias</span>
+  <span class="caption">Referencias (*)</span>
   <input type="text" name="referencias"  value="" placeholder="Orientaciones, esquina, kms"  class="validate-required" ng-model="data.userDetails.landmarks" ng-focus="focusLandmarks = true" ng-blur="focusLandmarks = false">
   <label for="nombre" generated="true" class="error" ng-if="!data.userDetails.landmarks && data.formValidation">Debe dar una referencia de orientación</label>
 </label>
 </div><!--
 --></div> <!-- .cols -->
 
-</li>
+<!-- </li>
 <li class="separador">
   <h3 class="titulo" id="velocidadDeProduccion">Velocidad de producción</h3>
   <div class="radios">
@@ -98,9 +98,9 @@
       <span class="holder"></span>
       <span class="caption">{{method.title}} (${{method.price}})</span>
     </label>
-  </div> <!-- .radios -->
+  </div>
   <label for="envio" class="error" ng-if="!data.userDetails.type && data.formValidation">Debe especificar una velocidad de producción</label>
-</li>
+</li> -->
 
 <li class="separador">
   <h3 class="titulo" id="formaDePago">Forma de pago</h3>

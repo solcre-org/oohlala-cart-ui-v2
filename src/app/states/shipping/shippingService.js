@@ -131,10 +131,10 @@ app.service("ShippingService", [
             _self.data.userDetails.landmarks = $sanitize(_self.data.userDetails.landmarks);
           }
         }
-        if(!_self.data.userDetails.type){
-          $anchorScroll('velocidadDeProduccion');
-          return false;
-        }
+        // if(!_self.data.userDetails.type){
+        //   $anchorScroll('velocidadDeProduccion');
+        //   return false;
+        // }
 
         if(!_self.data.userDetails.payment){
           $anchorScroll('formaDePago');
@@ -197,6 +197,9 @@ app.service("ShippingService", [
           _self.data.order.items.push(angular.copy(shipping));
         }
 
+        //FORCE NORMAL PRODUCTION TYPE
+        _self.data.userDetails.type = -1;
+
         //add shipping type selection to the order as a product, if it's different than normal shipping
         if(_self.data.userDetails.type != -1){
           shipping = {}
@@ -217,7 +220,7 @@ app.service("ShippingService", [
         aux['data'] = {};
         aux.data['orderFolderName'] = _self.data.orderFolderName;
         aux.data['productWithFolder'] = _self.data.productWithFolder;
-        
+
         _self.data.order.extraData = angular.copy(aux);
         //when the object is created the OrderResource is created
 
