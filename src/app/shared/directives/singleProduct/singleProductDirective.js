@@ -72,7 +72,7 @@ app.directive('singleProductDirective', [
         scope.data = SingleProductService.data;
 
         scope.problem = false;
-        
+
         //upload files to memory. No API interaction yet
         scope.upload = function(files){
           //logic that's completely independent from DOM elements is in the service
@@ -253,24 +253,45 @@ app.directive('singleProductDirective', [
           $rootScope.$digest();
         }
 
-        //rotate the image counter clockwise
-        //to prevent cropping while rotating, the cropping area has to be reset in each rotation
+        //rotates the cropping box 90 degrees
         scope.rotateCounter = function(){
-          var auxWidth = 0;
-          //set the cropping area to a 10th the picture size, and centered.
-          scope.croppingImage.setData({
-            width:scope.editingPicture.height/10,
-            height:scope.editingPicture.width/10,
-            x:scope.editingPicture.width/2,
-            y:scope.editingPicture.height/2
-          });
+          var currentCropper = {};
+          //gets the current cropper configuration
+          currentCropper = scope.croppingImage.getData();
+          //sets the aspect ratio exchanging current values
 
-          scope.croppingImage.rotate(-90);
-          //because the picture is now rotated, width becomes height and vice-versa
-          //it's necessary to store that change for further rotations
-          auxWidth = scope.editingPicture.width;
-          scope.editingPicture.width = scope.editingPicture.height;
-          scope.editingPicture.height = auxWidth;
+          if(scope.proportions != -1){
+            scope.croppingImage.setAspectRatio(currentCropper.height / currentCropper.width);
+
+          //makes the cropper box as big as possible
+          scope.croppingImage.setData({
+            width:scope.editingPicture.width,
+            height:scope.editingPicture.height
+          })
+        }else{
+          scope.croppingImage.setData({
+            width:currentCropper.height,
+            height:currentCropper.width
+          })
+        }
+
+          //PREVIOUS BEHAVIOUR: ROTATE BUTTON ROTATES THE IMAGE NOT THE CROPPER BOX
+
+          // var auxWidth = 0;
+          // //set the cropping area to a 10th the picture size, and centered.
+          // scope.croppingImage.setData({
+          //   width:scope.editingPicture.height/10,
+          //   height:scope.editingPicture.width/10,
+          //   x:scope.editingPicture.width/2,
+          //   y:scope.editingPicture.height/2
+          // });
+          //
+          // scope.croppingImage.rotate(-90);
+          // //because the picture is now rotated, width becomes height and vice-versa
+          // //it's necessary to store that change for further rotations
+          // auxWidth = scope.editingPicture.width;
+          // scope.editingPicture.width = scope.editingPicture.height;
+          // scope.editingPicture.height = auxWidth;
         }
 
         //close the crop image modal, reset variables
