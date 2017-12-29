@@ -191,9 +191,6 @@ app.service("CustomizationService", [
               _self.data.productsInCart.forEach(function(product, productIndex){
                 //for each product, we go through the pictures in it
 
-
-                console.log(product.pictures);
-
                 product.pictures.forEach(function(picture, pictureIndex){
                   //for each picture, we load the attributes in the formData to send
 
@@ -250,7 +247,7 @@ app.service("CustomizationService", [
                   $state.go('shipping', {'folder':_self.data.picturesFolder, 'orderArray':_self.data.orderArrayFromAPIToSend, 'order': _self.data.orderFromCart});
 
                 }else{
-                  _self.displayErrorMessage('Ocurrió un error en el servidor, por favor inténtelo de nuevo más tarde',6000);
+                  _self.displayErrorMessage('Ocurrió un error en el servidor, por favor inténtelo de nuevo más tarde',6000, true);
                   // $state.go('confirmation', {'success': false, 'orderId':_self.data.orderId});
                   console.log('failed to send images')
                 }

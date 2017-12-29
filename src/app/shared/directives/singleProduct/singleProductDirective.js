@@ -72,7 +72,7 @@ app.directive('singleProductDirective', [
         scope.data = SingleProductService.data;
 
         scope.problem = false;
-
+        
         //upload files to memory. No API interaction yet
         scope.upload = function(files){
           //logic that's completely independent from DOM elements is in the service

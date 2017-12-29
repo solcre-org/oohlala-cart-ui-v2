@@ -85,7 +85,14 @@ app.service("SingleProductService", [
               object.height = auxImage.height;
               //evaluates if the picture poportions are within the album's by the accuracy specified in the configuration file
               if(proportions!=-1){
-                object.proportions = Math.abs((auxImage.width / auxImage.height) - proportions ) < Configuration.proportionAccuracy
+
+                //THE NEXT LINE IS COMMENTED BECAUSE THE CUSTOMER ASKED NOT TO MAKE
+                //PROPORTION ACCURATE RESIZING COMPULSORY.
+                //TO REVERT, COMMENT ocject.proportions = true; AND UNCOMMENT THE FOLLOWING LINE
+                object.proportions = true;
+
+                // object.proportions = Math.abs((auxImage.width / auxImage.height) - proportions ) < Configuration.proportionAccuracy
+
               }else{
                 object.proportions = true;
               }
