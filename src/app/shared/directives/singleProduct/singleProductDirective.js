@@ -23,11 +23,11 @@ app.directive('singleProductDirective', [
         revelado: '=',
         ready: '=',
         giftMessage: '=',
-        paid: '='
+        paid: '=',
+        mobileMode : '='
 
       },
       link: function (scope, element, attrs) {
-
         //THERE IS LOGIC IN THIS CONTROLLER BECAUSE OF MULTIPLE INSTANCES OF THE
         //DIRECTIVE SHARING THE SAME INSTANCE OF THE SERVICE.
 
@@ -117,18 +117,6 @@ app.directive('singleProductDirective', [
           scope.picturesToDelete = {};
         }
 
-        //function that disables the delete confirmation button if there are no pictures marked
-        scope.hasPicturesMarkedForDelete = function(){
-          //goes through the picturesToDelete array
-          for(var i in scope.picturesToDelete){
-            //if any picture is marked as true, it returns true. If none, false
-            if(scope.picturesToDelete[i]){
-              return true;
-            }
-          }
-          return false;
-        }
-
         //marks all pictures as ready to delete
         scope.setAllPicturesToDelete = function(){
           //becaus of how picturesToDelete uses its indexes, its important to
@@ -147,8 +135,25 @@ app.directive('singleProductDirective', [
             //only stores ids, no need to duplicate file objects
             scope.picturesSortAux.push(picture.id);
           })
-          //enable sorting
-          scope.sortableOptions.disabled = false;
+          // If the webpage is not being open on mobile, enable the drag-sorting
+          // If it's open on mobile, arrows appear for sorting one by one
+          if(!scope.mobileMode){
+            //enable sorting
+            scope.sortableOptions.disabled = false;
+          }
+        }
+
+        // Changes the order of a specific picture when clicking on the arrow buttons
+        scope.changeSort = function(picturePosition, moveLeft){
+          if(moveLeft){
+            scope.model.splice(picturePosition-1, 0, angular.copy(scope.model[picturePosition]));
+            scope.model.splice(picturePosition+1, 1);
+          }else{
+            scope.model.splice(picturePosition+2, 0, angular.copy(scope.model[picturePosition]));
+            scope.model.splice(picturePosition, 1);
+          }
+
+
         }
 
         //in case the user cancels the sorting
@@ -263,17 +268,17 @@ app.directive('singleProductDirective', [
           if(scope.proportions != -1){
             scope.croppingImage.setAspectRatio(currentCropper.height / currentCropper.width);
 
-          //makes the cropper box as big as possible
-          scope.croppingImage.setData({
-            width:scope.editingPicture.width,
-            height:scope.editingPicture.height
-          })
-        }else{
-          scope.croppingImage.setData({
-            width:currentCropper.height,
-            height:currentCropper.width
-          })
-        }
+            //makes the cropper box as big as possible
+            scope.croppingImage.setData({
+              width:scope.editingPicture.width,
+              height:scope.editingPicture.height
+            })
+          }else{
+            scope.croppingImage.setData({
+              width:currentCropper.height,
+              height:currentCropper.width
+            })
+          }
 
           //PREVIOUS BEHAVIOUR: ROTATE BUTTON ROTATES THE IMAGE NOT THE CROPPER BOX
 

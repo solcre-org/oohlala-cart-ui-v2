@@ -20,7 +20,7 @@
 <div class="section wrapper container">
   <div class="tabla">
     <ul>
-      <single-product-directive ng-repeat="product in data.productsInCart track by $index" max-pictures="product.maxPictures" proportions="product.pictureProportions" name="product.name" revelado="product.revelado" ready="product.ready" model="product.pictures" gift-message = "product.giftMessage" class="item producto-comp" show-overflow="showOverflowError()" get-ready-status="getReady()" paid="data.orderPaid"></single-product-directive>
+      <single-product-directive ng-repeat="product in data.productsInCart track by $index" max-pictures="product.maxPictures" proportions="product.pictureProportions" name="product.name" revelado="product.revelado" ready="product.ready" model="product.pictures" gift-message = "product.giftMessage" class="item producto-comp" show-overflow="showOverflowError()" get-ready-status="getReady()" paid="data.orderPaid" mobile-mode="data.mobileMode"></single-product-directive>
     </ul>
   </div>
 

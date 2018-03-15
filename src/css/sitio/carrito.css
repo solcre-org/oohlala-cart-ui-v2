@@ -1,3 +1,24 @@
+
+.change-order{
+  position: absolute;
+  font-size: 107pt;
+  color: white;
+  -webkit-text-stroke: black 1px;
+  bottom: 12%;
+  line-height: 0.7;
+}
+
+.change-order.left{
+  left: 0px;
+}
+
+.change-order.right{
+  right: 5px;
+}
+
+
+
+
 .bold-order{
     font-weight: 700;
 }
@@ -156,7 +177,7 @@
     top: 50%;
     margin-top: -15px;
     font-size: 1.6em;
-    font-weight: 700;   
+    font-weight: 700;
 }
 
 .producto-comp.item .drop-container{
@@ -237,7 +258,7 @@
     background: #d05959;
     opacity: 0;
     border-radius: 5px;
-    
+
     -webkit-animation: errorFoto 700ms linear 2;
     -moz-animation: errorFoto 700ms linear 2;
     animation: errorFoto 700ms linear 2;
@@ -335,16 +356,16 @@
     -o-transform: translate3d(0,0,0);
     transform: translate3d(-10px,0,0);
 
-    -webkit-transition: 
+    -webkit-transition:
         transform 300ms ease-out,
         opacity 300ms ease-out;
-    -moz-transition: 
+    -moz-transition:
         transform 300ms ease-out,
         opacity 300ms ease-out;
-    -o-transition: 
+    -o-transition:
         transform 300ms ease-out,
         opacity 300ms ease-out;
-    transition: 
+    transition:
         transform 300ms ease-out,
         opacity 300ms ease-out;
 
@@ -1086,7 +1107,7 @@
         -webkit-box-sizing:border-box;
         -moz-box-sizing:border-box;
         box-sizing:border-box;
-    } 
+    }
     .proceso-compra .resumen:after{
         content: "";
         display: inline-block;
@@ -1255,7 +1276,7 @@
     }
 
     .producto-comp.item .acciones .action .tool-holder .tooltip{
-        font-size: 1em;        
+        font-size: 1em;
     }
 
     .producto-comp.item .drop-container .drop .foto-holder{
@@ -1443,7 +1464,7 @@
     .appLoader .loader{
         height: calc(100vh - 480px);
     }
-    
+
 }
 
 
@@ -1572,7 +1593,7 @@
         -o-transform: translate3d(0,0,0);
         transform: translate3d(0,0,0);
     }
-    
+
     50% {
             -webkit-transform: translate3d(0,-15px,0);
         -moz-transform: translate3d(0,-15px,0);

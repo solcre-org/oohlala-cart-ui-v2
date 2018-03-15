@@ -43,10 +43,12 @@ app.service("CustomizationService", [
         orderArrayForFolder:[],
         orderArrayFromAPI:{},
         picturesFolder:'',
-        orderFromCart:{}
+        orderFromCart:{},
+        mobileMode:false
       },
 
       initialize:function(){
+        _self.data.mobileMode = false;
         _self.data.orderArrayForFolder = [];
         _self.data.orderArrayFromAPI = {};
         _self.data.picturesFolder = '';
@@ -68,6 +70,14 @@ app.service("CustomizationService", [
 
         //receives the order from the cart and runs a formatting method
         $rootScope.sectionId = 'listado-compra';
+        // Detect if the user is in mobile, some functionality changes
+        if(
+          /iphone/i.test(navigator.userAgent) ||
+          /ipad/i.test(navigator.userAgent) ||
+          /android/i.test(navigator.userAgent)
+        ){
+          _self.data.mobileMode = true;
+        }
       },
 
       //receives the order object as parameter

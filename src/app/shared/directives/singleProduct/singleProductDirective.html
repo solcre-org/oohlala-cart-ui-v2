@@ -6,7 +6,9 @@
     <span class="cantidad" ng-class="{'completado':ready, 'error': problem}">{{loadedPictures}}/{{maxPictures}}</span>
   </div> <!-- .head-item -->
 
-  <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-disabled="(state.state != 'default') || !paid" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1">
+  <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1">
+
+    <!-- <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-disabled="(state.state != 'default') || !paid" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1"> -->
 
     <svg xmlns="http://www.w3.org/2000/svg" >
       <rect x="0" y="0" class="path" width="100%" height="100%"/>
@@ -24,11 +26,13 @@
       <input type="checkbox"  value="" ng-model="picturesToDelete[picture.id]">
       <span class="holder"></span><!-- .foto-->
     </label>
+    <button class="change-order left" ng-if="state.state == 'orden' && mobileMode" ng-hide="$index == 0" ng-click="changeSort($index, true)">&#8249;</button>
+    <button class="change-order right" ng-if="state.state == 'orden' && mobileMode" ng-hide="$index == model.length-1" ng-click="changeSort($index, false)">&#8250;</button>
 
-    <button type="button" class="btn-foto btn-crop openPopup" ng-click="openEditPicture(picture)"></button>
+    <button type="button" class="btn-foto btn-crop openPopup" ng-click="openEditPicture(picture)" ng-if="state.state == 'default'"></button>
 
-</li><!--
---></ul> <!-- .drop -->
+  </li><!--
+  --></ul> <!-- .drop -->
 
 </div> <!-- .drop-container -->
 
@@ -48,7 +52,7 @@
     </div> <!-- .select-buttons -->
     <div class="right">
       <button type="button" class="caption" ng-click="setState('default')">Cancelar</button>
-      <button type="button" class="caption activo" ng-click="deletePictures()" ng-disabled="!hasPicturesMarkedForDelete()">Eliminar fotos</button>
+      <button type="button" class="caption activo" ng-click="deletePictures()" ng-disabled="picturesToDelete.length == 0">Eliminar fotos</button>
     </div> <!-- .right -->
   </div> <!-- .acciones-container -->
   <div class="container action orden">
