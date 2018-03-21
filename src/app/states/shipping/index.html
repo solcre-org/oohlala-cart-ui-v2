@@ -7,15 +7,17 @@
 
   <h2 class="notVisible">Envío</h2>
 
+
   <nav class="fixedNav ">
     <h2 class="notVisible">Navegacion interna</h2>
     <ul class="listado wrapper"><!--
-    --><li class="actual"><button class="anchor" ui-sref="cart"><span class="num">1</span>Mi carrito</<button></li><!--
-  --><li class="actual"><button class="anchor"><span class="num">2</span>Envio y forma de pago</button></li><!--
---><li><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
---><li><button class="anchor"><span class="num">4</span>Arma tus productos</button></li><!--
+    --><li class="actual"><button class="anchor"><span class="num">1</span>Mi carrito</<button></li><!--
+  --><li class="actual"><button class="anchor"><span class="num">2</span>Armá tus productos</button></li><!--
+--><li class="actual"><button class="anchor"><span class="num">3</span>Pago online</button></li><!--
+--><li><button class="anchor"><span class="num">4</span>Confirmación</button></li><!--
 --></ul>
 </nav>
+
 
 <div class="section wrapper container">
   <form id="form-envio"  method="post">
@@ -91,15 +93,15 @@
 
 <!-- </li>
 <li class="separador">
-  <h3 class="titulo" id="velocidadDeProduccion">Velocidad de producción</h3>
-  <div class="radios">
-    <label ng-repeat="method in data.shippingTypes track by $index">
-      <input type="radio" name="tipo" value="{{method.id}}" class="validate-required" ng-model="data.userDetails.type" ng-change="onShippingMethodSelect(method.price, 1)">
-      <span class="holder"></span>
-      <span class="caption">{{method.title}} (${{method.price}})</span>
-    </label>
-  </div>
-  <label for="envio" class="error" ng-if="!data.userDetails.type && data.formValidation">Debe especificar una velocidad de producción</label>
+<h3 class="titulo" id="velocidadDeProduccion">Velocidad de producción</h3>
+<div class="radios">
+<label ng-repeat="method in data.shippingTypes track by $index">
+<input type="radio" name="tipo" value="{{method.id}}" class="validate-required" ng-model="data.userDetails.type" ng-change="onShippingMethodSelect(method.price, 1)">
+<span class="holder"></span>
+<span class="caption">{{method.title}} (${{method.price}})</span>
+</label>
+</div>
+<label for="envio" class="error" ng-if="!data.userDetails.type && data.formValidation">Debe especificar una velocidad de producción</label>
 </li> -->
 
 <li class="separador">
