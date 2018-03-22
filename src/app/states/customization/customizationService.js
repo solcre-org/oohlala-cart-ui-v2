@@ -271,9 +271,15 @@ app.service("CustomizationService", [
 
       },
 
-
-      showOverflowError:function(){
-        _self.displayErrorMessage('Se alcanzó el límite de fotos', 3000, true);
+      // Shows an error message after the upload
+      showOverflowError:function(options){
+        if(options.overflownAlbum && options.fileOverSizeLimit){
+          _self.displayErrorMessage('Se alcanzó el límite de fotos y alguna de las fotos pesa más de 10MB', 4500, true);
+        }else if(options.overflownAlbum){
+          _self.displayErrorMessage('Se alcanzó el límite de fotos', 4500, true);
+        }else{
+          _self.displayErrorMessage('Alguna de las imágenes pesa más de 10MB', 4500, true);
+        }
       },
 
       //polls each product asking if they are ready to submit

@@ -6,7 +6,7 @@
     <span class="cantidad" ng-class="{'completado':ready, 'error': problem}">{{loadedPictures}}/{{maxPictures}}</span>
   </div> <!-- .head-item -->
 
-  <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1">
+  <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1">
 
     <!-- <div class="drop-container" ngf-drop="upload($files)" ngf-select="upload($files)" ng-model="pictureUploader" id="pictureUploader" ngf-max-size="10MB" ngf-drag-over-class="'dropping'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" ng-disabled="(state.state != 'default') || !paid" ng-class="{'revelado': revelado}" ngf-select-disabled="model.length >= 1"> -->
 

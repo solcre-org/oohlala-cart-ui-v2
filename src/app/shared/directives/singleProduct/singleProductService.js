@@ -33,12 +33,25 @@ app.service("SingleProductService", [
 
       //store picture file in target array
       upload:function (files, targetArray, id, maxPictures, loadedPictures, proportions, callbackFunction) {
-        //tells the controller if the album got overflown
+        //tells the controller if the album got overflown or if a file is too large
+        // Error variable is used as a global flag for errors
         var overflownAlbum = false;
+        var fileOverSizeLimit = false;
+        var error = false;
         var objectToSave = {};
         //could receive multiple files
         files.forEach(function(pictureFile, index){
+          // If the picture is over 10MB in size, mark the flag to display the error message
+          // and exit this iteration.
+          // The rest of the files should upload correctly
+          if(pictureFile.size > 10000000){
+            error = true;
+            fileOverSizeLimit = true;
+            return false;
+          }
+
           if(loadedPictures >= maxPictures){
+            error = true;
             overflownAlbum = true;
           }else{
             //assigns a new id to the file. Each controller tracks their own ids.
@@ -47,6 +60,7 @@ app.service("SingleProductService", [
             objectToSave.quant = 1;
             //Its necesary to save the file to upload to the server afterwards
             objectToSave.file = pictureFile;
+
             //save object to the array
             targetArray.push(objectToSave);
             //converts the picture to base64 to store in the array as data
@@ -57,7 +71,7 @@ app.service("SingleProductService", [
             loadedPictures++;
           }
         })
-        return overflownAlbum;
+        return {'error': error, 'overflownAlbum': overflownAlbum, 'fileOverSizeLimit': fileOverSizeLimit};
       },
 
       //recieves an object with 'id' property. Increments it and returns it.
@@ -72,7 +86,6 @@ app.service("SingleProductService", [
         reader.readAsDataURL(file);
         reader.onload = function () {
           object.base64 = reader.result;
-
           //when the base64 is loaded, a new image object is created to get the image size
           var auxImage = new Image();
           //the base64 is loaded as imge src
@@ -80,6 +93,9 @@ app.service("SingleProductService", [
           auxImage.onload = function(){
             //a timeout is needed to make sure the change is rendered in the digest cycle
             $timeout(function(){
+
+
+
               //image size is stored in the object for rotation
               object.width = auxImage.width;
               object.height = auxImage.height;
