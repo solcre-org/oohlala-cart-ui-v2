@@ -23,7 +23,8 @@ var configuration = {
 	confirmationOkMessage:'Este es el mensaje de que salió todo bien',
 	confirmationFailMessage:'Te pedimos disculpas, ocurrió algo inesperado que no nos permitió continuar con el proceso. Por favor ponete en contacto con nosotros y te daremos una solución. Tu número de orden es: ',
 	confirmationFailMessageClose:'. Gracias por comprender.',
-	proportionAccuracy: 0.05
+	proportionAccuracy: 0.05,
+	maxMobileImageHeight: 1350
 };
 
 

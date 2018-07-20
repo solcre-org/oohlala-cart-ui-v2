@@ -78,7 +78,7 @@ app.directive('singleProductDirective', [
           //logic that's completely independent from DOM elements is in the service
           //uploads pictures to the array, returns true if the array still has room
           //for more pictures.
-          var uploadResponse = SingleProductService.upload(files, scope.model, scope.lastPicture, scope.maxPictures, scope.loadedPictures, scope.proportions, scope.getLoadedPictures)
+          var uploadResponse = SingleProductService.upload(files, scope.model, scope.lastPicture, scope.maxPictures, scope.loadedPictures, scope.proportions, scope.mobileMode,scope.getLoadedPictures)
           if(uploadResponse.error){
             scope.showOverflow({'options':uploadResponse});
           };

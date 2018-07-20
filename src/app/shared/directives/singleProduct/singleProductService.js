@@ -32,7 +32,7 @@ app.service("SingleProductService", [
       //THAT'S WHY THE METHODS HAVE TO BE INDEPENDENT FROM DOM ELEMENTS
 
       //store picture file in target array
-      upload:function (files, targetArray, id, maxPictures, loadedPictures, proportions, callbackFunction) {
+      upload:function (files, targetArray, id, maxPictures, loadedPictures, proportions, isMobile,callbackFunction) {
         //tells the controller if the album got overflown or if a file is too large
         // Error variable is used as a global flag for errors
         var overflownAlbum = false;
@@ -65,7 +65,9 @@ app.service("SingleProductService", [
             targetArray.push(objectToSave);
             //converts the picture to base64 to store in the array as data
             //_self.getBase64(pictureFile, targetArray, targetArray.length-1);
-            _self.getBase64(pictureFile, targetArray, objectToSave, proportions, callbackFunction);
+			//_self.getBase64(pictureFile, targetArray, objectToSave, proportions, callbackFunction);
+			_self.loadBase64(pictureFile, objectToSave, isMobile, callbackFunction);
+
             //reset object for next file
             objectToSave = {};
             loadedPictures++;
@@ -81,7 +83,7 @@ app.service("SingleProductService", [
       },
 
       //returns a file in base64
-      getBase64:function(file, array, object, proportions, callbackFunction) {
+      /*getBase64:function(file, array, object, proportions, callbackFunction) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
@@ -125,7 +127,7 @@ app.service("SingleProductService", [
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };
-      },
+      },*/
 
       //receives an array of pictures and an array of selections
       //index of each selection corresponds to the id of the image to delete
@@ -142,7 +144,87 @@ app.service("SingleProductService", [
             }
           }
         }
-      }
+	  },
+	  
+	  loadBase64: function(file, object, isMobile, callback){
+		  //Success callback
+		  var successCallback = function(f, base64, width, height) {
+				//Load requiered data
+				object.file = f;
+				object.base64 = base64;
+				object.width = width;
+				object.height = height;
+
+				//Callback
+				callback();
+			};
+
+			//Load as url
+			_self.readFileAsUrl(file, function(image, base64, width, height){
+				//Check is mobile
+				if(isMobile && height > Configuration.maxMobileImageHeight){
+					//Resize it
+					_self.resizeImage(image, file, function(file){
+						//Load data again
+						_self.readFileAsUrl(file, function(resizedFile, resizedBase64, resizedWidth, resizedHeight){
+							//Callback with resized data
+							successCallback(resizedFile, resizedBase64, resizedWidth, resizedHeight);
+						});
+					})
+				}else{
+					//Load and continue
+					successCallback(file, base64, width, height);
+				}
+			});
+	  },
+	  readFileAsUrl: function(file, callback){
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function () {
+			//when the base64 is loaded, a new image object is created to get the image size
+			var image = new Image();
+			//the base64 is loaded as imge src
+			image.src = reader.result;
+			image.onload = function(){
+				callback(image, reader.result, image.width, image.height);
+			};
+		};
+	  },
+	  resizeImage: function(image, file, callback){
+		  //Create canvas for image resize
+		  var canvas = document.createElement("canvas");
+
+		  //Check height
+		  if (image.height > Configuration.maxMobileImageHeight) {
+			  //Resize width
+			  image.width *= Configuration.maxMobileImageHeight / image.height;
+			  //Resize height
+			  image.height = Configuration.maxMobileImageHeight;
+		  }
+
+		  //Get 2d context for drawing new image
+		  var ctx = canvas.getContext("2d");
+		  
+		  // step 1 - draw normally
+		  canvas.width = image.width;
+		  canvas.height = image.height;
+		  ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+		  /// step 2 - resize 50% of step 1
+		  ctx.drawImage(canvas, 0, 0, canvas.width * 0.5, canvas.height * 0.5);
+
+		  /// step 3, resize to final size
+		  ctx.drawImage(canvas, 0, 0, canvas.width * 0.5, canvas.height * 0.5, 0, 0, canvas.width, canvas.height);
+
+		  //Convert to blob
+		  ctx.canvas.toBlob(function (fileResized) {
+			  //Execute callback converting blob to FIle again
+			  callback(new File([fileResized], file.name, {
+				lastModified: file.lastModified,
+				type: file.type
+			}));
+		  });
+	  }
 
 
     }
