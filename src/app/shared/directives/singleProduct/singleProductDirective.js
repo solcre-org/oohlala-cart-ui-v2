@@ -329,10 +329,19 @@ app.directive('singleProductDirective', [
               scope.ready = false;
               scope.problem = true;
             }
+            
+             //@@TODO: remove this
+            //if(scope.mobileMode){
+                  scope.ready = true;
+                  scope.problem = true;
+            //}
           }else{
             scope.ready = false;
             scope.problem = false;
-          }
+        }
+		  
+		 
+
           //getReadyStatus() maps to getReady in the controller
           scope.getReadyStatus();
 

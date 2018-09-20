@@ -52,7 +52,16 @@ app.service("CustomizationService", [
         _self.data.orderArrayForFolder = [];
         _self.data.orderArrayFromAPI = {};
         _self.data.picturesFolder = '';
-        _self.data.orderFromCart = $stateParams.order;
+		_self.data.orderFromCart = $stateParams.order;
+		
+		// Detect if the user is in mobile, some functionality changes
+        if(
+			/iphone/i.test(navigator.userAgent) ||
+			/ipad/i.test(navigator.userAgent) ||
+			/android/i.test(navigator.userAgent)
+		  ){
+			_self.data.mobileMode = true;
+		  }
 
         //verify if the order exists and is not empty
         if(!$stateParams.order ||
@@ -70,14 +79,7 @@ app.service("CustomizationService", [
 
         //receives the order from the cart and runs a formatting method
         $rootScope.sectionId = 'listado-compra';
-        // Detect if the user is in mobile, some functionality changes
-        if(
-          /iphone/i.test(navigator.userAgent) ||
-          /ipad/i.test(navigator.userAgent) ||
-          /android/i.test(navigator.userAgent)
-        ){
-          _self.data.mobileMode = true;
-        }
+        
       },
 
       //receives the order object as parameter
@@ -115,10 +117,16 @@ app.service("CustomizationService", [
 
             //indicates if the product is revelado. Markup and options change.
             //productInOrder.revelado = order.isRevelado;
-            productInOrder.revelado = false;
+			productInOrder.revelado = false;
+			
+
             //tracks is product is ready for sending. Default false, obviousy
-            productInOrder.ready = false;
-            //positionDetail tracks the product number if the quantity is more than 1.
+            productInOrder.ready = true; //_self.data.mobileMode;
+			
+			
+			
+			
+			//positionDetail tracks the product number if the quantity is more than 1.
             //Each of the same product has a consecutive number
             productInOrder.positionDetail = i + 1;
             //text message in case of gift
@@ -208,7 +216,7 @@ app.service("CustomizationService", [
                   //changing the id to add 100 for each iteration
                   for(var i = 0; i < picture.quant; i++){
 
-                    formData = new FormData();
+					formData = new FormData();
 
                     //tell the server where to store the pictures
                     formData.append('order_id', _self.data.picturesFolder);
@@ -222,10 +230,16 @@ app.service("CustomizationService", [
 
                     //the picture is named a generic name because the server overrides it.
                     //the file extension is taken from the blob type
-                    // ---   (L) Regex   ---
-                    pictureName = product.positionDetail+'.'+picture.file.type.toString().match(/\w*\/(\w*)$/)[1];
+					// ---   (L) Regex   ---
+					
+					//@@TODO: REMOVE IF
+					var pictureFile = picture.file;
+					if(!picture.file.type){
+						pictureFile = picture.originalFile;
+					}
 
-                    formData.append('image', picture.file, pictureName);
+                    pictureName = product.positionDetail+'.'+pictureFile.type.toString().match(/\w*\/(\w*)$/)[1];
+                    formData.append('image', pictureFile, pictureName);
                     // formData.append('position_detail', product.positionDetail);
                     formData.append('message_file', product.giftMessage);
 

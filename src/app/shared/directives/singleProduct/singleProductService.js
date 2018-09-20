@@ -147,6 +147,9 @@ app.service("SingleProductService", [
 	  },
 	  
 	  loadBase64: function(file, object, isMobile, callback){
+		  //load original file
+		  object.originalFile = file;
+
 		  //Success callback
 		  var successCallback = function(f, base64, width, height) {
 				//Load requiered data
@@ -225,7 +228,7 @@ app.service("SingleProductService", [
 			}));
 		  });
 	  }
-
+	  
 
     }
 
