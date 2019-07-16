@@ -1,10 +1,10 @@
 var configuration = {
-	apiUrl:'http://www.oohlala.com.uy',
+	apiUrl:'//www.oohlala.com.uy',
 	uploadUri:'/fileshandler/upload.php',
 	requestFolderUri:'/fileshandler/upload.php',
-	cartImagesUrl:'http://api.columnis.com/uploads/035/images/thumbs',
-	cartOrderUrl:'http://api.columnis.com/035/ecommerce/orders',
-	paymentGatewayUrl: 'http://api.columnis.com/035/ecommerce/getPaymentUrl',
+	cartImagesUrl:'//api.columnis.com/uploads/035/images/thumbs',
+	cartOrderUrl:'//api.columnis.com/035/ecommerce/orders',
+	paymentGatewayUrl: '//api.columnis.com/035/ecommerce/getPaymentUrl',
 	paymentMethods:[
 		{'id':1, 'method':'visa', 'class':'visa'},
 		{'id':2, 'method':'oca', 'class':'oca'},
